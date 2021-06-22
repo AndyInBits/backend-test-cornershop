@@ -26,6 +26,6 @@ class UserViewSet(mixins.CreateModelMixin,
                   mixins.DestroyModelMixin,
                   viewsets.GenericViewSet):
     """User view set."""
-    permission_classes = (IsAuthenticated, IsAdminUser,)
+    # permission_classes = (IsAuthenticated, IsAdminUser,)
     serializer_class = UserModelSerializer
     queryset = User.objects.all()

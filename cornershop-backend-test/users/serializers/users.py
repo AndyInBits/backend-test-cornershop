@@ -1,5 +1,12 @@
 """Users serializers."""
 
+# utisl python
+import random
+import string
+
+# Django Hashers
+from django.contrib.auth.hashers import make_password
+
 # Django REST Framework
 from rest_framework import serializers
 
@@ -27,7 +34,8 @@ class UserModelSerializer(serializers.ModelSerializer):
 
     def create(self, data):
         """Handle user creation."""
-        data['password'] = User.objects.make_random_password()
+        password = ''.join(random.choice(string.digits) for i in range(15))
+        data['password'] = make_password(password)
         user = User.objects.create_user(**data)
-        # send_confirmation_email.delay(user_pk=user.pk)
+        # send_confirmation_email.delay(user_pk=user.pk, password)
         return user
