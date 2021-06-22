@@ -5,6 +5,9 @@ _usage() {
   echo "running the server"
   echo "    up        start the server in development mode"
   echo ""
+  echo "Load user default "
+  echo "    loaduser        create base users"
+  echo ""
   echo "testing code"
   echo "    test      run tests, accepts test names as arguments"
   echo "    cov       run tests with coverage"
@@ -66,6 +69,9 @@ makemigrations|makemigration|makemig)
 ;;
 sqlmig|sqlmigrate|sqlmigration)
   python manage.py sqlmigrate "$@"
+;;
+loaduser)
+  python manage.py loaddata users/fixtures/users.json "$@"
 ;;
 *)
   _usage
