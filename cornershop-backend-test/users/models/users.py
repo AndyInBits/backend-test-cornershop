@@ -34,12 +34,12 @@ class User(CommonModel, AbstractUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username', 'first_name', 'last_name']
 
-    is_employee = models.BooleanField(
-        'employee',
-        default=True,
+    is_manager = models.BooleanField(
+        'manager',
+        default=False,
         help_text=(
             'Help easily distinguish users and perform queries. '
-            'employees are the main type of user.'
+            'managers are the main type of user.'
         )
     )
 

@@ -16,12 +16,7 @@ class Profile(CommonModel):
 
     user = models.OneToOneField('users.User', on_delete=models.CASCADE)
 
-    picture = models.ImageField(
-        'profile picture',
-        upload_to='users/pictures/',
-        blank=True,
-        null=True
-    )
+    picture = models.TextField(blank=True, null=True)
     biography = models.TextField(max_length=500, blank=True)
 
     position = models.CharField(max_length=50, blank=True, null=True)
