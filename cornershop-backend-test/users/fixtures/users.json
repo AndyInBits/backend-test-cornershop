@@ -9,20 +9,9 @@
       "password": "pbkdf2_sha256$180000$wBXCxFVhGmdV$F4Wh75P4ZM7uS7N1Y3Yhzzlq19JqUemroty98sJaxfQ=",
       "email": "admin1@yopmail.com",
       "is_superuser": true,
+      "is_staff": true,
       "is_manager": true,
       "phone_number": "+57 300000000",
-      "created": "2021-05-31 00:00:00",
-      "modified": "2021-05-31 00:00:00"
-    }
-  },
-  {
-    "model": "users.profile",
-    "pk": 1,
-    "fields": {
-      "user": 1,
-      "picture": null,
-      "biography": "Soy un empleado muy feliz.",
-      "position": "IT Manager Chile",
       "created": "2021-05-31 00:00:00",
       "modified": "2021-05-31 00:00:00"
     }
@@ -37,20 +26,9 @@
       "password": "pbkdf2_sha256$180000$wBXCxFVhGmdV$F4Wh75P4ZM7uS7N1Y3Yhzzlq19JqUemroty98sJaxfQ=",
       "email": "menumanager@yopmail.com",
       "is_superuser": false,
+      "is_staff": false,
       "is_manager": true,
       "phone_number": "+57 300000001",
-      "created": "2021-05-31 00:00:00",
-      "modified": "2021-05-31 00:00:00"
-    }
-  },
-  {
-    "model": "users.profile",
-    "pk": 2,
-    "fields": {
-      "user": 2,
-      "picture": null,
-      "biography": "Administrador de menu y pedidos",
-      "position": "Delivery Manager Chile",
       "created": "2021-05-31 00:00:00",
       "modified": "2021-05-31 00:00:00"
     }
@@ -66,19 +44,8 @@
       "email": "employee@yopmail.com",
       "is_superuser": false,
       "is_manager": false,
+      "is_staff": false,
       "phone_number": "+57 300000002",
-      "created": "2021-05-31 00:00:00",
-      "modified": "2021-05-31 00:00:00"
-    }
-  },
-  {
-    "model": "users.profile",
-    "pk": 3,
-    "fields": {
-      "user": 3,
-      "picture": null,
-      "biography": "Employee 1",
-      "position": "Employee team Chile",
       "created": "2021-05-31 00:00:00",
       "modified": "2021-05-31 00:00:00"
     }
