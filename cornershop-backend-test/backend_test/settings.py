@@ -35,18 +35,30 @@ SERVER_URL = os.getenv("SERVER_URL", default="*")
 APPEND_SLASH = False
 
 # Application definition
-
-INSTALLED_APPS = [
+# Django apps
+DJANGO_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+]
+# Third party apps
+THIRD_PARTY_APPS = [
     "rest_framework",
     "django_extensions",
-    "backend_test.utils",
 ]
+# Local Apps
+LOCAL_APPS = [
+    "backend_test.utils",
+    "users",
+    "menus",
+    "orders",
+]
+# Total APPS
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+
 
 MIDDLEWARE = [
     "backend_test.middleware.HealthCheckAwareSessionMiddleware",
@@ -234,3 +246,5 @@ LOGGING = {
         },
     },
 }
+
+AUTH_USER_MODEL = "users.User"

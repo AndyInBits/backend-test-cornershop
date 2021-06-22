@@ -52,7 +52,7 @@ services:
             - POSTGRES_PASSWORD=postgres
             - POSTGRES_DB=postgres
         ports:
-            - 5432:5432
+            - 5433:5432
     testdb:
         image: circleci/postgres:12.3-postgis-ram
         environment:
