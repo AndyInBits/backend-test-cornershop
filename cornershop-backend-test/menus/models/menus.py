@@ -1,5 +1,6 @@
 """Menu Options model."""
-
+# uuid
+import uuid
 # Django
 from django.db import models
 
@@ -14,7 +15,8 @@ class Menu(CommonModel):
     """Menu model.
     This model is in charge of managing the daily menus
     """
-
+    menu_uuid = models.UUIDField(
+        default=uuid.uuid4, editable=False, unique=True)
     # name of menu
     name = models.CharField(max_length=150, blank=False, null=False)
 
