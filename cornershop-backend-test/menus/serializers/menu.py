@@ -2,17 +2,17 @@
 
 # Django REST Framework
 from rest_framework import serializers
-from rest_framework.response import Response
-
-# Django
-from django.shortcuts import get_object_or_404
 
 # Models
-from menus.models import Menu, Option
+from menus.models import Menu
+
+# Option serializers
+from .menu_options import OptionModelSerializer
 
 
 class MenuModelSerializer(serializers.ModelSerializer):
     """Menu model serializer."""
+
     class Meta:
         """Meta class."""
         model = Menu
@@ -23,19 +23,6 @@ class MenuModelSerializer(serializers.ModelSerializer):
             'date',
             'reminder',
             'options',
-            'created',
-            'modified',
-        )
-
-
-class OptionModelSerializer(serializers.ModelSerializer):
-    """Options model serializer."""
-    class Meta:
-        """Meta class."""
-        model = Option
-        fields = (
-            'pk',
-            'option',
             'created',
             'modified',
         )
