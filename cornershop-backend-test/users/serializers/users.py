@@ -30,6 +30,8 @@ class UserModelSerializer(serializers.ModelSerializer):
             'is_manager',
             'is_superuser',
             'is_staff',
+            'created',
+            'modified',
         )
 
     def create(self, data):
