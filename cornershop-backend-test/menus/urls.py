@@ -14,4 +14,6 @@ router.register(r'api/v1/menu/options', views.OptionViewSet,
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('api/v1/today/menu/<str:uuid>',
+         views.GetTodayMenuAPIView.as_view(), name='get_today_menu'),
 ]

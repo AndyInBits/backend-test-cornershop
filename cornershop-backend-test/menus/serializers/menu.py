@@ -23,6 +23,7 @@ class MenuModelSerializer(serializers.ModelSerializer):
             'date',
             'reminder',
             'options',
+            'available',
             'created',
             'modified',
         )
@@ -41,6 +42,7 @@ class ListMenuModelSerializer(serializers.ModelSerializer):
             'name',
             'date',
             'reminder',
+            'available',
             'options',
             'created',
             'modified',

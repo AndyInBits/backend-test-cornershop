@@ -21,4 +21,5 @@ urlpatterns = [
     path("healthz", healthz, name="healthz"),
     path('', include('users.urls')),
     path('', include('menus.urls')),
+    path('', include('orders.urls')),
 ]

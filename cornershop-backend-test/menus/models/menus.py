@@ -24,13 +24,19 @@ class Menu(CommonModel):
     date = models.DateField(
         auto_now_add=False,
         blank=False,
-        null=False
+        null=False,
+        unique=True
     )
     # activate reminder
     reminder = models.BooleanField(
         'reminder',
         default=False,
         help_text='Activate reminder.'
+    )
+
+    available = models.BooleanField(
+        'available',
+        default=True
     )
 
     options = models.ManyToManyField(

@@ -1,6 +1,7 @@
 # Django Rest Framework
 from rest_framework.generics import RetrieveAPIView
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
+
 from rest_framework import mixins, viewsets
 
 # Local models
@@ -27,6 +28,6 @@ class UserViewSet(mixins.CreateModelMixin,
                   viewsets.GenericViewSet):
 
     """User view set."""
-    # permission_classes = (IsAuthenticated, IsAdminUser,)
+    permission_classes = (IsAuthenticated, IsAdminUser,)
     serializer_class = UserModelSerializer
     queryset = User.objects.all()
