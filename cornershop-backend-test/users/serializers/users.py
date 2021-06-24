@@ -13,6 +13,9 @@ from rest_framework import serializers
 # Models
 from users.models import User
 
+# task send email
+from users.tasks import send_welcome_email
+
 
 class UserModelSerializer(serializers.ModelSerializer):
     """User model serializer."""
@@ -39,5 +42,5 @@ class UserModelSerializer(serializers.ModelSerializer):
         password = ''.join(random.choice(string.digits) for i in range(15))
         data['password'] = make_password(password)
         user = User.objects.create_user(**data)
-        # send_confirmation_email.delay(user_pk=user.pk, password)
+        send_welcome_email.delay(password, user.pk)
         return user

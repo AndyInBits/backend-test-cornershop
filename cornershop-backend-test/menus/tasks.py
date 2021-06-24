@@ -1,8 +1,10 @@
-# celery logger and task
+# service send menssage slack
 from menus.services.slack import send_message_slack
-import time
-from .celery import app
+
+# celery logger and task
+from backend_test.celery import app
 from celery.utils.log import get_task_logger
+
 # date time lib
 from datetime import datetime
 
@@ -11,8 +13,6 @@ from menus.models.menus import Menu
 
 # Logger celery
 logger = get_task_logger(__name__)
-
-# service send menssage slack
 
 
 @app.task(name="disabled_menu_today")
@@ -26,8 +26,10 @@ def disabled_menu_today():
 def send_menu_slack():
     """ send menu daily slack every days at 9:00 am """
     now = datetime.now().strftime('%Y-%m-%d')
+
     try:
         menu = Menu.objects.get(date=now, available=True)
         send_message_slack(menu.menu_uuid)
     except Menu.DoesNotExist:
+        print("error")
         pass

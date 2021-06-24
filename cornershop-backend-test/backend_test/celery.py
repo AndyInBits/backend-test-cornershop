@@ -29,7 +29,7 @@ class CelerySettings:
     )
     CELERY_IGNORE_RESULT = getenv(
         "CELERY_IGNORE_RESULT", default="True", coalesce=bool)
-    CELERY_STORE_ERRORS_EVEN_IF_IGNORED = True
+    CELERY_STORE_ERRORS_EVEN_IF_IGNORED = False
     CELERYD_TASK_TIME_LIMIT = 60 * 2  # hard time limit
     CELERYD_TASK_SOFT_TIME_LIMIT = int(CELERYD_TASK_TIME_LIMIT * 0.85)
     CELERY_ACKS_LATE = True
