@@ -48,6 +48,7 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     "rest_framework",
     "django_extensions",
+    "django_celery_beat",
 ]
 # Local Apps
 LOCAL_APPS = [
@@ -112,7 +113,7 @@ DATABASES = {
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://{}:6379/0".format(
+        "LOCATION": "redis://{}:6379/1".format(
             getenv("REDIS_CACHE_HOSTNAME", default="redis")
         ),
         "OPTIONS": {"CLIENT_CLASS": "django_redis.client.DefaultClient"},

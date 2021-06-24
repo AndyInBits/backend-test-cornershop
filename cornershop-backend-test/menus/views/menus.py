@@ -50,4 +50,5 @@ class GetTodayMenuAPIView(APIView):
         except Menu.DoesNotExist:
             return Response({"detail": "Menu not available"}, status=status.HTTP_404_NOT_FOUND)
         serializer = ListMenuModelSerializer(queryset)
+
         return Response(serializer.data, status=status.HTTP_200_OK)

@@ -1,8 +1,9 @@
+from datetime import timedelta
 import os
 
 from celery import Celery
-
 from .envtools import getenv
+from celery.schedules import crontab
 
 
 class CelerySettings:
@@ -36,7 +37,7 @@ class CelerySettings:
     # Task result backend settings
     # https://docs.celeryproject.org/en/v4.3.0/userguide/configuration.html#task-result-backend-settings
     CELERY_RESULT_BACKEND = getenv(
-        "CELERY_RESULT_BACKEND_URL", default="redis://redis:6379/3"
+        "CELERY_RESULT_BACKEND_URL", default="redis://redis:6379/1"
     )
     CELERY_RESULT_SERIALIZER = "json"
     CELERY_TASK_RESULT_EXPIRES = 60 * 60 * 24
@@ -48,7 +49,7 @@ class CelerySettings:
     CELERY_DEFAULT_ROUTING_KEY = CELERY_DEFAULT_QUEUE
     # Message Routing
     # https://docs.celeryproject.org/en/v4.3.0/userguide/configuration.html#broker-url
-    BROKER_URL = getenv("CELERY_BROKER_URL", default="redis://redis:6379/2")
+    BROKER_URL = getenv("CELERY_BROKER_URL", default="redis://redis:6379/1")
     BROKER_POOL_LIMIT = 10  # default is 10
     BROKER_CONNECTION_MAX_RETRIES = 0  # default is 100, ask joe why 0
     BROKER_HEARTBEAT = None
@@ -58,7 +59,7 @@ class CelerySettings:
     # Logging
     # https://docs.celeryproject.org/en/v4.3.0/userguide/configuration.html#logging
     CELERYD_HIJACK_ROOT_LOGGER = getenv(
-        "CELERYD_HIJACK_ROOT_LOGGER", default="False", coalesce=bool
+        "CELERYD_HIJACK_ROOT_LOGGER", default="TRUE", coalesce=bool
     )
     # Custom Component Classes (advanced)
     # https://docs.celeryproject.org/en/v4.3.0/userguide/configuration.html#custom-component-classes-advanced
@@ -72,3 +73,20 @@ settings = CelerySettings()
 app = Celery("backend_test")
 app.config_from_object(settings)
 app.autodiscover_tasks()
+
+
+@ app.task(bind=True)
+def debug_task(self):
+    print('Request: {0!r}'.format(self.request))
+
+
+app.conf.beat_schedule = {
+    'run-every-days-11am': {
+        'task': 'disabled_menu_today',
+        'schedule': crontab(hour=11, day_of_week='mon-fri')
+    },
+    'run-every-days-9am': {
+        'task': 'send_menu_slack',
+        'schedule': crontab(hour=9, day_of_week='mon-fri')
+    },
+}

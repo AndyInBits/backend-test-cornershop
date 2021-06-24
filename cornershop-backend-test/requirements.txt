@@ -54,3 +54,4 @@ wcwidth==0.2.5
 wrapt==1.12.1
 pillow==8.2.0
 djangorestframework-simplejwt==4.7.1
+slack-sdk==3.7.0
