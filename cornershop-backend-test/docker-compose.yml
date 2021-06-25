@@ -29,6 +29,19 @@ services:
             - jupyterlab
             - postgres
             - redis
+    frontend:
+        build:
+            context: .
+            dockerfile: frontend/Dockerfile
+        environment:
+            - NEXT_PUBLIC_API_URL=http://localhost:8000/
+        volumes:
+            - ./frontend:/opt/cornershop/frontend
+            - /opt/cornershop/frontend/node_modules
+        ports:
+            - 3000:3000
+        # depends_on:
+        #     - backend
 
     jupyterlab:
         build:
