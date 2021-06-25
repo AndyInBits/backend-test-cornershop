@@ -55,3 +55,4 @@ wrapt==1.12.1
 pillow==8.2.0
 djangorestframework-simplejwt==4.7.1
 slack-sdk==3.7.0
+django-cors-headers==3.7.0

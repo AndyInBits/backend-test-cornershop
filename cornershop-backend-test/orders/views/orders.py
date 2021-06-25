@@ -1,6 +1,7 @@
 # Django Rest Framework
 from rest_framework.permissions import IsAuthenticated, AllowAny
-from rest_framework import mixins, viewsets
+from rest_framework.response import Response
+from rest_framework import mixins, viewsets, status
 
 # Local permissions
 from utils.permissions import IsManager
@@ -9,7 +10,7 @@ from utils.permissions import IsManager
 from orders.models import Order
 
 # Serializers class
-from orders.serializers import OrderDetailModelSerializer, OrderModelSerializer
+from orders.serializers import OrderModelSerializer, OrderDeatilsModelSerializer, OrderCreateSerializer
 
 
 class OrdersViewSet(mixins.CreateModelMixin,
@@ -23,9 +24,9 @@ class OrdersViewSet(mixins.CreateModelMixin,
 
     def get_serializer_class(self):
         """Assign serializers class based on action."""
-        if self.action == 'create' or self.action == 'update' or self.action == 'partial_update':
-            return OrderDetailModelSerializer
-        return OrderModelSerializer
+        if self.action == 'update' or self.action == 'partial_update':
+            return OrderModelSerializer
+        return OrderDeatilsModelSerializer
 
     def get_queryset(self):
         """queryset based in rol user"""
@@ -38,7 +39,16 @@ class OrdersViewSet(mixins.CreateModelMixin,
 
     def get_permissions(self):
         """Assign permission based on action."""
-        permissions = [IsAuthenticated, ]
+        permissions = []
+        if self.action in ['create']:
+            permissions.append(AllowAny)
         if self.action in ['update', 'partial_update', 'destroy']:
-            permissions.append(IsManager)
+            permissions.append(IsAuthenticated)
         return [p() for p in permissions]
+
+    def create(self, request):
+        """ create order """
+        serializer = OrderCreateSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response({"detail": "Order created"}, status=status.HTTP_201_CREATED)

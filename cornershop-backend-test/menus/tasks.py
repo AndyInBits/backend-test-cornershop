@@ -28,8 +28,7 @@ def send_menu_slack():
     now = datetime.now().strftime('%Y-%m-%d')
 
     try:
-        menu = Menu.objects.get(date=now, available=True)
+        menu = Menu.objects.get(date=now, available=True, reminder=True)
         send_message_slack(menu.menu_uuid)
     except Menu.DoesNotExist:
-        print("error")
         pass

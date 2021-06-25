@@ -24,6 +24,8 @@ SECRET_KEY = getenv("SECRET_KEY", default="###SECRET_KEY###")
 DEBUG = getenv("DEBUG", default=False, coalesce=bool)
 
 ALLOWED_HOSTS = ["*"]
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = False
 
 USE_X_FORWARDED_HOST = False
 SESSION_COOKIE_HTTPONLY = True
@@ -47,6 +49,7 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     "rest_framework",
     "django_extensions",
+    "corsheaders",
 ]
 # Local Apps
 LOCAL_APPS = [
@@ -60,6 +63,7 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "backend_test.middleware.HealthCheckAwareSessionMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
