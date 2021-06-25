@@ -6,13 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('menus', '0001_initial'),
+        ("menus", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='menu',
-            name='options',
-            field=models.ManyToManyField(blank=True, db_table='menus_menu_options', related_name='menu_options', to='menus.MenuOption'),
+            model_name="menu",
+            name="options",
+            field=models.ManyToManyField(
+                blank=True,
+                db_table="menus_menu_options",
+                related_name="menu_options",
+                to="menus.MenuOption",
+            ),
         ),
     ]

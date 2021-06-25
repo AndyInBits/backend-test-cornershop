@@ -11,7 +11,6 @@ ENV PORT 3000
 # Create app directory
 RUN mkdir -p /opt/cornershop/frontend
 WORKDIR /opt/cornershop/frontend
-RUN printenv
 # Installing dependencies
 COPY frontend/package.json /opt/cornershop/frontend/
 RUN npm install

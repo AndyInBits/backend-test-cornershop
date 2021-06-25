@@ -7,39 +7,89 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='MenuOption',
+            name="MenuOption",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created', models.DateTimeField(auto_now_add=True, help_text='Date time on which the object was created.', verbose_name='created at')),
-                ('modified', models.DateTimeField(auto_now=True, help_text='Date time on which the object was last modified.', verbose_name='modified at')),
-                ('option', models.TextField(max_length=500)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "created",
+                    models.DateTimeField(
+                        auto_now_add=True,
+                        help_text="Date time on which the object was created.",
+                        verbose_name="created at",
+                    ),
+                ),
+                (
+                    "modified",
+                    models.DateTimeField(
+                        auto_now=True,
+                        help_text="Date time on which the object was last modified.",
+                        verbose_name="modified at",
+                    ),
+                ),
+                ("option", models.TextField(max_length=500)),
             ],
             options={
-                'ordering': ['-created', '-modified'],
-                'get_latest_by': 'created',
-                'abstract': False,
+                "ordering": ["-created", "-modified"],
+                "get_latest_by": "created",
+                "abstract": False,
             },
         ),
         migrations.CreateModel(
-            name='Menu',
+            name="Menu",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created', models.DateTimeField(auto_now_add=True, help_text='Date time on which the object was created.', verbose_name='created at')),
-                ('modified', models.DateTimeField(auto_now=True, help_text='Date time on which the object was last modified.', verbose_name='modified at')),
-                ('name', models.CharField(max_length=150)),
-                ('date', models.DateField()),
-                ('reminder', models.BooleanField(default=False, help_text='Activate reminder.', verbose_name='reminder')),
-                ('options', models.ManyToManyField(blank=True, to='menus.MenuOption')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "created",
+                    models.DateTimeField(
+                        auto_now_add=True,
+                        help_text="Date time on which the object was created.",
+                        verbose_name="created at",
+                    ),
+                ),
+                (
+                    "modified",
+                    models.DateTimeField(
+                        auto_now=True,
+                        help_text="Date time on which the object was last modified.",
+                        verbose_name="modified at",
+                    ),
+                ),
+                ("name", models.CharField(max_length=150)),
+                ("date", models.DateField()),
+                (
+                    "reminder",
+                    models.BooleanField(
+                        default=False,
+                        help_text="Activate reminder.",
+                        verbose_name="reminder",
+                    ),
+                ),
+                ("options", models.ManyToManyField(blank=True, to="menus.MenuOption")),
             ],
             options={
-                'ordering': ['-created', '-modified'],
-                'get_latest_by': 'created',
-                'abstract': False,
+                "ordering": ["-created", "-modified"],
+                "get_latest_by": "created",
+                "abstract": False,
             },
         ),
     ]

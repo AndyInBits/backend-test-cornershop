@@ -10,25 +10,58 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('menus', '0004_auto_20210622_1517'),
+        ("menus", "0004_auto_20210622_1517"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Order',
+            name="Order",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created', models.DateTimeField(auto_now_add=True, help_text='Date time on which the object was created.', verbose_name='created at')),
-                ('modified', models.DateTimeField(auto_now=True, help_text='Date time on which the object was last modified.', verbose_name='modified at')),
-                ('comment', models.TextField(max_length=500)),
-                ('menu', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='menus.Menu')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "created",
+                    models.DateTimeField(
+                        auto_now_add=True,
+                        help_text="Date time on which the object was created.",
+                        verbose_name="created at",
+                    ),
+                ),
+                (
+                    "modified",
+                    models.DateTimeField(
+                        auto_now=True,
+                        help_text="Date time on which the object was last modified.",
+                        verbose_name="modified at",
+                    ),
+                ),
+                ("comment", models.TextField(max_length=500)),
+                (
+                    "menu",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="menus.Menu"
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'ordering': ['-created', '-modified'],
-                'get_latest_by': 'created',
-                'abstract': False,
+                "ordering": ["-created", "-modified"],
+                "get_latest_by": "created",
+                "abstract": False,
             },
         ),
     ]

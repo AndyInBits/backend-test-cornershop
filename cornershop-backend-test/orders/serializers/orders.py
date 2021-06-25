@@ -1,25 +1,13 @@
 """Orders serializers."""
 
-# Django
 from django.contrib.auth import authenticate
-
-# Django REST Framework
 from rest_framework import serializers
 
-# Models Order
-from orders.models import Order
-
-# Models Menu
 from menus.models import Menu
-
-# Menu Serializers
 from menus.serializers import ListMenuModelSerializer
-
-# User Serializers
-from users.serializers import UserModelSerializer
-
-# confirm order email task
+from orders.models import Order
 from orders.tasks import confirm_order_email
+from users.serializers import UserModelSerializer
 
 
 class OrderCreateSerializer(serializers.Serializer):
@@ -32,28 +20,27 @@ class OrderCreateSerializer(serializers.Serializer):
     def validate(self, data):
         """Check credentials and menu"""
 
-        user = authenticate(username=data['email'], password=data['password'])
+        user = authenticate(username=data["email"], password=data["password"])
         if not user:
-            raise serializers.ValidationError('Invalid credentials')
+            raise serializers.ValidationError("Invalid credentials")
 
         try:
-            menu = Menu.objects.get(id=data['menu'], available=True)
+            menu = Menu.objects.get(id=data["menu"], available=True)
         except Menu.DoesNotExist:
-            raise serializers.ValidationError(
-                'This menu is no longer available')
+            raise serializers.ValidationError("This menu is no longer available")
 
-        self.context['user'] = user
-        self.context['menu'] = menu
+        self.context["user"] = user
+        self.context["menu"] = menu
 
         return data
 
     def create(self, data):
         # """Handle order creation."""
         order = Order.objects.create(
-            menu=self.context['menu'],
-            user=self.context['user'],
-            comment=data['comment'],
-            option=data['option']
+            menu=self.context["menu"],
+            user=self.context["user"],
+            comment=data["comment"],
+            option=data["option"],
         )
         confirm_order_email.delay(order.pk)
         return order
@@ -61,17 +48,19 @@ class OrderCreateSerializer(serializers.Serializer):
 
 class OrderModelSerializer(serializers.ModelSerializer):
     """Order model serializer."""
+
     class Meta:
         """Meta class."""
+
         model = Order
         fields = (
-            'pk',
-            'comment',
-            'user',
-            'menu',
-            'option',
-            'created',
-            'modified',
+            "pk",
+            "comment",
+            "user",
+            "menu",
+            "option",
+            "created",
+            "modified",
         )
 
 
@@ -83,13 +72,14 @@ class OrderDeatilsModelSerializer(serializers.ModelSerializer):
 
     class Meta:
         """Meta class."""
+
         model = Order
         fields = (
-            'pk',
-            'comment',
-            'user',
-            'menu',
-            'option',
-            'created',
-            'modified',
+            "pk",
+            "comment",
+            "user",
+            "menu",
+            "option",
+            "created",
+            "modified",
         )

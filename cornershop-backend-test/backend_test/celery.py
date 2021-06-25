@@ -1,8 +1,9 @@
 import os
 
 from celery import Celery
-from .envtools import getenv
 from celery.schedules import crontab
+
+from .envtools import getenv
 
 
 class CelerySettings:
@@ -21,13 +22,11 @@ class CelerySettings:
     CELERY_TASK_SERIALIZER = "json"
     # Task execution settings
     # https://docs.celeryproject.org/en/v4.3.0/userguide/configuration.html#task-execution-settings
-    CELERY_ALWAYS_EAGER = getenv(
-        "CELERY_ALWAYS_EAGER", default="False", coalesce=bool)
+    CELERY_ALWAYS_EAGER = getenv("CELERY_ALWAYS_EAGER", default="False", coalesce=bool)
     CELERY_EAGER_PROPAGATES_EXCEPTIONS = getenv(
         "CELERY_EAGER_PROPAGATES_EXCEPTIONS", default="False", coalesce=bool
     )
-    CELERY_IGNORE_RESULT = getenv(
-        "CELERY_IGNORE_RESULT", default="True", coalesce=bool)
+    CELERY_IGNORE_RESULT = getenv("CELERY_IGNORE_RESULT", default="True", coalesce=bool)
     CELERY_STORE_ERRORS_EVEN_IF_IGNORED = False
     CELERYD_TASK_TIME_LIMIT = 60 * 2  # hard time limit
     CELERYD_TASK_SOFT_TIME_LIMIT = int(CELERYD_TASK_TIME_LIMIT * 0.85)
@@ -74,18 +73,18 @@ app.config_from_object(settings)
 app.autodiscover_tasks()
 
 
-@ app.task(bind=True)
+@app.task(bind=True)
 def debug_task(self):
-    print('Request: {0!r}'.format(self.request))
+    print("Request: {0!r}".format(self.request))
 
 
 app.conf.beat_schedule = {
-    'run-every-days-11am': {
-        'task': 'disabled_menu_today',
-        'schedule': crontab(hour=11, day_of_week='mon-fri')
+    "run-every-days-11am": {
+        "task": "disabled_menu_today",
+        "schedule": crontab(hour=11, day_of_week="mon-fri"),
     },
-    'run-every-days-9am': {
-        'task': 'send_menu_slack',
-        'schedule': crontab(hour=9, day_of_week='mon-fri')
+    "run-every-days-9am": {
+        "task": "send_menu_slack",
+        "schedule": crontab(hour=9, day_of_week="mon-fri"),
     },
 }

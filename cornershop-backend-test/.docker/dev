@@ -42,10 +42,10 @@ celerybeat)
   celery -A $APP beat -l info
 ;;
 test)
-  pytest "$@" --flake8 --isort --black --junitxml=/dev/shm/test-results/pytest.xml
+  pytest "$@" --flake8 --isort --black --junitxml=/dev/shm/test-results/pytest.xml --ignore=frontend --ignore=menus/migrations --ignore=users/migrations --ignore=orders/migrations
 ;;
 cov)
-  pytest "$@" --flake8 --isort --black --cov=backend_test --junitxml=/dev/shm/test-results/pytest.xml
+  pytest "$@" --flake8 --isort --black --cov=backend_test --junitxml=/dev/shm/test-results/pytest.xml --ignore=frontend --ignore=menus/migrations --ignore=users/migrations --ignore=orders/migrations
 ;;
 isort)
   isort .

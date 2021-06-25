@@ -7,13 +7,13 @@ import uuid
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('menus', '0004_auto_20210622_1517'),
+        ("menus", "0004_auto_20210622_1517"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='menu',
-            name='menu_uuid',
+            model_name="menu",
+            name="menu_uuid",
             field=models.UUIDField(default=uuid.uuid4, editable=False, unique=True),
         ),
     ]

@@ -6,17 +6,21 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users', '0001_initial'),
+        ("users", "0001_initial"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='user',
-            name='is_employee',
+            model_name="user",
+            name="is_employee",
         ),
         migrations.AddField(
-            model_name='user',
-            name='is_manager',
-            field=models.BooleanField(default=True, help_text='Help easily distinguish users and perform queries. managers are the main type of user.', verbose_name='manager'),
+            model_name="user",
+            name="is_manager",
+            field=models.BooleanField(
+                default=True,
+                help_text="Help easily distinguish users and perform queries. managers are the main type of user.",
+                verbose_name="manager",
+            ),
         ),
     ]

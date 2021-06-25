@@ -6,13 +6,17 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users', '0002_auto_20210622_1543'),
+        ("users", "0002_auto_20210622_1543"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='user',
-            name='is_manager',
-            field=models.BooleanField(default=False, help_text='Help easily distinguish users and perform queries. managers are the main type of user.', verbose_name='manager'),
+            model_name="user",
+            name="is_manager",
+            field=models.BooleanField(
+                default=False,
+                help_text="Help easily distinguish users and perform queries. managers are the main type of user.",
+                verbose_name="manager",
+            ),
         ),
     ]

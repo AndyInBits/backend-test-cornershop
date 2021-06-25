@@ -6,12 +6,12 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('menus', '0003_auto_20210622_1516'),
+        ("menus", "0003_auto_20210622_1516"),
     ]
 
     operations = [
         migrations.RenameModel(
-            old_name='MenuOption',
-            new_name='Option',
+            old_name="MenuOption",
+            new_name="Option",
         ),
     ]

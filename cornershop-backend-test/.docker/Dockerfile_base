@@ -45,4 +45,6 @@ EXPOSE 8000
 ADD --chown=cornershop:cornershop .docker/docker-entrypoint.sh /
 ADD --chown=cornershop:cornershop .docker/dev /usr/local/bin/
 
+RUN rm -rf frontend/
+
 ENTRYPOINT ["/docker-entrypoint.sh"]
