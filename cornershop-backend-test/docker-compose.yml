@@ -29,6 +29,7 @@ services:
             - jupyterlab
             - postgres
             - redis
+            - frontend
     frontend:
         build:
             context: .
@@ -40,8 +41,6 @@ services:
             - /opt/cornershop/frontend/node_modules
         ports:
             - 3000:3000
-        # depends_on:
-        #     - backend
 
     jupyterlab:
         build:
