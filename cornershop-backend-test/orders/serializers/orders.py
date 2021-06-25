@@ -20,6 +20,9 @@ from menus.serializers import ListMenuModelSerializer
 # User Serializers
 from users.serializers import UserModelSerializer
 
+# confirm order email task
+from orders.tasks import confirm_order_email
+
 
 class OrderCreateSerializer(serializers.Serializer):
     menu = serializers.IntegerField()
@@ -54,7 +57,7 @@ class OrderCreateSerializer(serializers.Serializer):
             comment=data['comment'],
             option=data['option']
         )
-
+        confirm_order_email.delay(order.pk)
         return order
 
 

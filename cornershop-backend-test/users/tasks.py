@@ -1,6 +1,5 @@
 # User model
 from users.models import User
-from smtplib import SMTPException
 
 # Django
 from django.core.mail import EmailMultiAlternatives
