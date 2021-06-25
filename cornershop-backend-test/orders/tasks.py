@@ -26,6 +26,5 @@ def confirm_order_email(order_pk):
     )
     msg = EmailMultiAlternatives(
         subject, content, from_email, [order.user.email])
-    print(msg)
     msg.attach_alternative(content, "text/html")
     msg.send()
