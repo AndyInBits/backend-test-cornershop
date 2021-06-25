@@ -3,10 +3,8 @@
 # Django
 from django.contrib.auth import authenticate
 
-
 # Django REST Framework
 from rest_framework import serializers
-from rest_framework.generics import get_object_or_404
 
 # Models Order
 from orders.models import Order

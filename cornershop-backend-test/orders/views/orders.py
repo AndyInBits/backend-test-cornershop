@@ -3,9 +3,6 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework import mixins, viewsets, status
 
-# Local permissions
-from utils.permissions import IsManager
-
 # Local models
 from orders.models import Order
 

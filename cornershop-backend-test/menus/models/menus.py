@@ -1,6 +1,7 @@
 """Menu Options model."""
 # uuid
 import uuid
+
 # Django
 from django.db import models
 

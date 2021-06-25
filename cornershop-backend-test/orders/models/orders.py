@@ -19,7 +19,7 @@ class Order(CommonModel):
     def __str__(self):
         """Return Order User and date """
         return '{username} - {menu} - {option} at {date}'.format(
-            user=self.user.username,
+            username=self.user.username,
             option=self.option,
             menu=self.menu,
             date=self.menu.date.strftime('%Y-%m-%d'),

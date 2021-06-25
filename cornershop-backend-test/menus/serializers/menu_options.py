@@ -4,7 +4,7 @@
 from rest_framework import serializers
 
 # Models
-from menus.models import Menu, Option
+from menus.models import Option
 
 
 class OptionModelSerializer(serializers.ModelSerializer):

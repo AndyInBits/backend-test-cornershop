@@ -1,6 +1,6 @@
 """Menu Options model."""
 
-# Django
+# Django
 from django.db import models
 
 # Utilities
