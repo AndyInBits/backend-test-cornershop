@@ -22,7 +22,7 @@ class AuthViewTest(TestCase):
             phone_number="+1300000000",
             is_manager=True,
             is_staff=True,
-            is_superuser=True
+            is_superuser=True,
         )
 
     def test_auth_credentials_invalid(self):
@@ -81,8 +81,7 @@ class AuthViewTest(TestCase):
 
     def test_get_me_invalid(self):
         """ validate get me service using token invalid """
-        response = factory.get(reverse("users_get_me"),
-                               content_type="application/json")
+        response = factory.get(reverse("users_get_me"), content_type="application/json")
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_get_me_valid(self):
@@ -94,8 +93,7 @@ class AuthViewTest(TestCase):
         )
         data = response_auth.data
         factory.defaults["HTTP_AUTHORIZATION"] = "Bearer " + data["access"]
-        response = factory.get(reverse("users_get_me"),
-                               content_type="application/json")
+        response = factory.get(reverse("users_get_me"), content_type="application/json")
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
@@ -115,7 +113,7 @@ class UserViewSetTest(TestCase):
             phone_number="+1300000000",
             is_manager=True,
             is_staff=True,
-            is_superuser=True
+            is_superuser=True,
         )
 
     def setUp(self):
@@ -150,7 +148,7 @@ class UserViewSetTest(TestCase):
                 "phone_number": "+57 3000000031",
                 "is_manager": True,
                 "is_superuser": True,
-                "is_staff": True
+                "is_staff": True,
             },
             content_type="application/json",
         )
@@ -160,7 +158,7 @@ class UserViewSetTest(TestCase):
         """ validate edit put Users """
         factory.defaults["HTTP_AUTHORIZATION"] = "Bearer " + self.token
         response = factory.put(
-            self.url + '4/',
+            self.url + "4/",
             data={
                 "username": "andresvz91s",
                 "first_name": "andress",
@@ -169,7 +167,7 @@ class UserViewSetTest(TestCase):
                 "phone_number": "+57 3000000032",
                 "is_manager": True,
                 "is_superuser": True,
-                "is_staff": True
+                "is_staff": True,
             },
             content_type="application/json",
         )
@@ -179,11 +177,11 @@ class UserViewSetTest(TestCase):
         """ validate edit patch Users """
         factory.defaults["HTTP_AUTHORIZATION"] = "Bearer " + self.token
         response = factory.patch(
-            self.url + '4/',
+            self.url + "4/",
             data={
                 "username": "andresvz91",
                 "first_name": "andres",
-                "last_name": "vasquez"
+                "last_name": "vasquez",
             },
             content_type="application/json",
         )
@@ -194,7 +192,7 @@ class UserViewSetTest(TestCase):
 
         factory.defaults["HTTP_AUTHORIZATION"] = "Bearer " + self.token
         response = factory.delete(
-            self.url + '4/',
+            self.url + "4/",
             content_type="application/json",
         )
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
