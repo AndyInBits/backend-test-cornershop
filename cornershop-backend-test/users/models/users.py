@@ -43,5 +43,5 @@ class User(CommonModel, AbstractUser):
         return self.username
 
     def get_full_name(self):
-        """Return username."""
+        """Return full name user."""
         return f"{self.first_name} {self.last_name}"

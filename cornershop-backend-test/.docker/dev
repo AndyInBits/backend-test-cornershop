@@ -11,6 +11,7 @@ _usage() {
   echo "testing code"
   echo "    test      run tests, accepts test names as arguments"
   echo "    cov       run tests with coverage"
+  echo "    apptest   run all tests for app"
   echo ""
   echo "installing Python requirements"
   echo "    pipi      without argument: installs packages defined in requirements.txt and requirements-local.txt"
@@ -40,6 +41,9 @@ celery)
 ;;
 celerybeat)
   celery -A $APP beat -l info
+;;
+apptest)
+  python manage.py test
 ;;
 test)
   pytest "$@" --flake8 --isort --black --junitxml=/dev/shm/test-results/pytest.xml --ignore=frontend --ignore=menus/migrations --ignore=users/migrations --ignore=orders/migrations
