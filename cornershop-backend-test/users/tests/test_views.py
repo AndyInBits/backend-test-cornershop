@@ -125,6 +125,7 @@ class UserViewSetTest(TestCase):
         )
         self.token = response.data["access"]
         self.url = "/api/v1/users/"
+        self.user = User.objects.get(email="admin@admintest.com")
 
     def test_list_user(self):
         """ validate get List Users """
@@ -158,7 +159,7 @@ class UserViewSetTest(TestCase):
         """ validate edit put Users """
         factory.defaults["HTTP_AUTHORIZATION"] = "Bearer " + self.token
         response = factory.put(
-            self.url + "4/",
+            self.url + str(self.user.pk) + "/",
             data={
                 "username": "andresvz91s",
                 "first_name": "andress",
@@ -177,7 +178,7 @@ class UserViewSetTest(TestCase):
         """ validate edit patch Users """
         factory.defaults["HTTP_AUTHORIZATION"] = "Bearer " + self.token
         response = factory.patch(
-            self.url + "4/",
+            self.url + str(self.user.pk) + "/",
             data={
                 "username": "andresvz91",
                 "first_name": "andres",
@@ -192,7 +193,7 @@ class UserViewSetTest(TestCase):
 
         factory.defaults["HTTP_AUTHORIZATION"] = "Bearer " + self.token
         response = factory.delete(
-            self.url + "4/",
+            self.url + str(self.user.pk) + "/",
             content_type="application/json",
         )
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
