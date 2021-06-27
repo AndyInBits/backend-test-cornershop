@@ -43,7 +43,7 @@ celerybeat)
   celery -A $APP beat -l info
 ;;
 apptest)
-  python manage.py test
+  python manage.py test --verbosity 2
 ;;
 test)
   pytest "$@" --flake8 --isort --black --junitxml=/dev/shm/test-results/pytest.xml --ignore=frontend
