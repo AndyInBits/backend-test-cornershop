@@ -46,10 +46,10 @@ apptest)
   python manage.py test
 ;;
 test)
-  pytest "$@" --flake8 --isort --black --junitxml=/dev/shm/test-results/pytest.xml --ignore=frontend --ignore=menus/migrations --ignore=users/migrations --ignore=orders/migrations
+  pytest "$@" --flake8 --isort --black --junitxml=/dev/shm/test-results/pytest.xml --ignore=frontend
 ;;
 cov)
-  pytest "$@" --flake8 --isort --black --cov=backend_test --junitxml=/dev/shm/test-results/pytest.xml --ignore=frontend --ignore=menus/migrations --ignore=users/migrations --ignore=orders/migrations
+  pytest "$@" --flake8 --isort --black --cov=backend_test --junitxml=/dev/shm/test-results/pytest.xml --ignore=frontend
 ;;
 isort)
   isort .

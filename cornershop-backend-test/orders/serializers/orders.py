@@ -27,8 +27,7 @@ class OrderCreateSerializer(serializers.Serializer):
         try:
             menu = Menu.objects.get(id=data["menu"], available=True)
         except Menu.DoesNotExist:
-            raise serializers.ValidationError(
-                "This menu is no longer available")
+            raise serializers.ValidationError("This menu is no longer available")
 
         self.context["user"] = user
         self.context["menu"] = menu
