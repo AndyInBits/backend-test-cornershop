@@ -12,8 +12,9 @@ def send_message_slack(menu_url):
     message = f""" ¡Hola! \n Comparto con ustedes el menú de hoy :) \n Menu : {site_url}{menu_url} """
 
     try:
-        client.chat_postMessage(channel=channel, text=message)
+        print(client.chat_postMessage(channel=channel, text=message))
     except SlackApiError as e:
+        print(e)
         # You will get a SlackApiError if "ok" is False
         # str like 'invalid_auth', 'channel_not_found'
         assert e.response["error"]

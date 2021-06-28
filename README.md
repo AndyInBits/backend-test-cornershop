@@ -66,16 +66,15 @@ The system is based on 3 basic roles with different permissions that allow each 
 
 ## - Admin:
 - The users of this role can administer the system users, manage other admins, manage order managers or manage employees, basically this role is a super admin of the system which can be extended more functionalities but for the scope of the project it is only in charge of user management.
-see demo here :
-<video width="320" height="320" controls>
-  <source src="https://github.com/Anfevazu/backend-test-cornershop/blob/master/Documentation/videos/admin.mp4" type="video/mp4">
-</video>
+## [See demo here !](https://drive.google.com/file/d/155t2FEQcUPDID_q3qbmRpuIaAqPjHqtF/view?usp=sharing)
 
 
 
 
 ## - Order manager:
 - Users of this role can manage all the menus and see the orders of the employees, they can also activate or deactivate menus and the actions of sending the daily notification of the menus to the slack channel.
+## [See demo here !](https://drive.google.com/file/d/1Ru8tiYNk3ZZQIVhIIzBLRD-iwahOmS1c/view?usp=sharing)
 
 ## - Employee :
 - This role can only access to place orders and review your order history.
+## [See demo here !](https://drive.google.com/file/d/1d4AdkiJZHdhwnKAZ168r1nCaxUFpIxoS/view?usp=sharing)

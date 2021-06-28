@@ -20,7 +20,7 @@ services:
             - REDIS_CACHE_HOSTNAME=redis
             - FRONT_SITE_URL=http://localhost:3000/menu/
             - SLACK_CHANNEL_ID=C025WRTBD29
-            - SLACK_API_TOKEN=xoxb-2227588988080-2210417523940-UnIY1LhoK4I56Wskpp0BbRTW
+            - SLACK_API_TOKEN=xoxp-2227588988080-2189175034247-2189197397687-6233ad174259974ca302eab3c3a1ab56
         volumes:
             - .:/opt/cornershop/backend-test
         ports:
