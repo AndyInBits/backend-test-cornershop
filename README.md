@@ -27,14 +27,26 @@ Platform to manage the shipment of food from Cornershop employees
 
 - master
 
+## System default users
 
-## Command to lift the project
-### Running the development environment
+- admin : admin1@yopmail.com - Admin123#
+- order manager : menumanager@yopmail.com - Admin123#
+- employee : employee@yopmail.com - Admin123#
+-------
 
 
 ```bash
 $ make up
 ```
+## Run test
+```bash
+$ dev test
+```
+## Run test and details
+```bash
+$ dev apptest
+```
+
 - After this step load the base users of the system with the following command :
 ```bash
 $ dev loaduser
